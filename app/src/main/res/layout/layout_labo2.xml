@@ -124,20 +124,29 @@
         android:text="@string/main_base_occupation_title"
         tools:ignore="MissingConstraints" />
 
-    <RadioButton
-        android:id="@+id/rb_student"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radio_grp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/main_base_occupation_student"
-        app:layout_constraintTop_toBottomOf="@id/txt_occupation" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/txt_occupation">
 
-    <RadioButton
-        android:id="@+id/rb_teacher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_base_occupation_worker"
-        app:layout_constraintTop_toBottomOf="@id/txt_occupation"
-        app:layout_constraintStart_toEndOf="@+id/rb_student" />
+        <RadioButton
+            android:id="@+id/rb_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_occupation_student" />
+
+        <RadioButton
+            android:id="@+id/rb_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_occupation_worker"/>
+
+    </RadioGroup>
+
+
+
 
 
 
@@ -164,7 +173,7 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:text="@string/main_specific_students_title"
-        app:layout_constraintTop_toBottomOf="@id/rb_student" />
+        app:layout_constraintTop_toBottomOf="@id/radio_grp" />
 
     <TextView
         android:id="@+id/txt_ecole_name"
