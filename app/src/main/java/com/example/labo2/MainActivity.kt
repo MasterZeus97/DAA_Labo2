@@ -28,11 +28,6 @@ class MainActivity : AppCompatActivity() {
         val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
         birthdayDate = findViewById<EditText>(R.id.edit_birthday)
 
-        ArrayAdapter.createFromResource(this, R.array.nationalities, android.R.layout.simple_spinner_item).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            nationality.adapter = adapter
-        }
-
         // nationality.onItemSelectedListener =
 
         val dateSetListener =
