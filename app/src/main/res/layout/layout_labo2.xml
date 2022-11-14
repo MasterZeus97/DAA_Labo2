@@ -168,7 +168,7 @@
         android:visibility="gone"
         app:constraint_referenced_ids="student_data_title,
                                        txt_ecole_name,
-                                       edit_ecole_name,
+                                       edit_school_name,
                                        txt_year_degree,
                                        edit_year_degree"/>
 
@@ -189,10 +189,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/left_margin"
-        app:layout_constraintBaseline_toBaselineOf="@id/edit_ecole_name"
+        app:layout_constraintBaseline_toBaselineOf="@id/edit_school_name"
         android:text="@string/main_specific_school_title" />
     <EditText
-        android:id="@+id/edit_ecole_name"
+        android:id="@+id/edit_school_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/student_data_title"
@@ -214,7 +214,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/main_specific_graduationyear_title"
-        app:layout_constraintTop_toBottomOf="@id/edit_ecole_name"
+        app:layout_constraintTop_toBottomOf="@id/edit_school_name"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
         android:maxLength="4"
@@ -230,7 +230,7 @@
         android:visibility="gone"
         app:constraint_referenced_ids="worker_data_title,
                                        txt_entrprise_name,
-                                       edit_worker_name,
+                                       edit_company_name,
                                        txt_sector,
                                        spinner_sector,
                                        txt_experience,
@@ -254,16 +254,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/left_margin"
-        app:layout_constraintBaseline_toBaselineOf="@id/edit_worker_name"
-        android:text="@string/main_specific_compagny_title" />
+        app:layout_constraintBaseline_toBaselineOf="@id/edit_company_name"
+        android:text="@string/main_specific_company_title" />
     <EditText
-        android:id="@+id/edit_worker_name"
+        android:id="@+id/edit_company_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/worker_data_title"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
-        android:hint="@string/main_specific_compagny_title"
+        android:hint="@string/main_specific_company_title"
         android:inputType="text"
         android:importantForAutofill="no" />
 
@@ -282,7 +282,7 @@
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
         android:entries="@array/sectors"
-        app:layout_constraintTop_toBottomOf="@id/edit_worker_name" />
+        app:layout_constraintTop_toBottomOf="@id/edit_company_name" />
 
     <!-- Années expérience -->
     <TextView

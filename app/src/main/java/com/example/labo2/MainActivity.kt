@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val btnCancel = findViewById<Button>(R.id.btn_cancel)
         val btnOK = findViewById<Button>(R.id.btn_ok)
         val radGrp = findViewById<RadioGroup>(R.id.radio_grp)
+        val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
 
         // Common inputs
         val name = findViewById<EditText>(R.id.edit_name)
@@ -33,17 +34,14 @@ class MainActivity : AppCompatActivity() {
         val nationality = findViewById<Spinner>(R.id.spinner_nation)
         val email = findViewById<EditText>(R.id.edit_email)
         val remark = findViewById<EditText>(R.id.edit_remarks)
-
-        // Birthday management
-        val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
         birthdate = findViewById<EditText>(R.id.edit_birthday)
 
         // Supp Student
-        val ecole_name = findViewById<EditText>(R.id.edit_ecole_name)
-        val year_degree = findViewById<EditText>(R.id.edit_year_degree)
+        val schoolName = findViewById<EditText>(R.id.edit_school_name)
+        val yearDegree = findViewById<EditText>(R.id.edit_year_degree)
 
         // Supp worker
-        val worker_name = findViewById<EditText>(R.id.edit_worker_name)
+        val companyName = findViewById<EditText>(R.id.edit_company_name)
         val sector = findViewById<Spinner>(R.id.spinner_sector)
         val experience = findViewById<EditText>(R.id.edit_experience)
 
@@ -54,9 +52,9 @@ class MainActivity : AppCompatActivity() {
             birthdate.text = ""
             nationality.setSelection(0)
             radGrp.clearCheck()
-            ecole_name.setText("")
-            year_degree.setText("")
-            worker_name.setText("")
+            schoolName.setText("")
+            yearDegree.setText("")
+            companyName.setText("")
             sector.setSelection(0)
             experience.setText("")
             email.setText("")
