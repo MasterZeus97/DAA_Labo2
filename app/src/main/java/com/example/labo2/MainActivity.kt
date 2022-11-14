@@ -3,12 +3,13 @@ package com.example.labo2
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.Group
+import ch.heigvd.iict.and.labo2.Student
+import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -63,8 +64,49 @@ class MainActivity : AppCompatActivity() {
             remark.setText("")
         }
 
-        // Button OK
-        btnOK.setOnClickListener {}
+        // Button OK : Print values in log
+        btnOK.setOnClickListener {
+            when (radGrp.checkedRadioButtonId) {
+                R.id.rb_student -> {
+                    var endYear = 0
+                    try {
+                        endYear = yearDegree.text.toString().toInt()
+                    } catch (_: Exception) {}
+
+                    println(Student(
+                        name.text.toString(),
+                        surname.text.toString(),
+                        cal,
+                        nationality.selectedItem.toString(),
+                        schoolName.text.toString(),
+                        endYear,
+                        email.text.toString(),
+                        remark.text.toString()
+                    ).toString())
+                }
+                R.id.rb_worker -> {
+                    var exp = 0
+                    try {
+                        exp = experience.text.toString().toInt()
+                    } catch (_: Exception) {}
+
+                    println(Worker(
+                        name.text.toString(),
+                        surname.text.toString(),
+                        cal,
+                        nationality.selectedItem.toString(),
+                        companyName.text.toString(),
+                        sector.selectedItem.toString(),
+                        exp,
+                        email.text.toString(),
+                        remark.text.toString()
+                    ).toString())
+                }
+                else -> {
+                    Log.e("MainActivity", "No specification selected")
+                }
+            }
+        }
 
         // Radio callback for supplementary data
         radGrp.setOnCheckedChangeListener{_, choice ->
