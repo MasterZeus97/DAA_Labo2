@@ -48,6 +48,17 @@ class MainActivity : AppCompatActivity() {
         val sector = findViewById<Spinner>(R.id.spinner_sector)
         val experience = findViewById<EditText>(R.id.edit_experience)
 
+        // Nationality list with default value
+        val natList = mutableListOf(
+            getString(R.string.nationality_empty),
+            getString(R.string.ch),
+            getString(R.string.fr),
+            getString(R.string.de),
+            getString(R.string.it),
+        )
+        val natAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, natList)
+        nationality.adapter = natAdapter
+
         // Cancel on click
         btnCancel.setOnClickListener {
             name.setText("")

@@ -122,7 +122,6 @@
     <Spinner
         android:id="@+id/spinner_nation"
         android:layout_width="0dp"
-        android:entries="@array/nationalities"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/edit_birthday"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
