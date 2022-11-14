@@ -22,13 +22,22 @@ class MainActivity : AppCompatActivity() {
         val surname =findViewById<EditText>(R.id.edit_surname)
         val nationality = findViewById<Spinner>(R.id.spinner_nation)
         val student = findViewById<RadioButton>(R.id.rb_student)
-        val teacher = findViewById<RadioButton>(R.id.rb_teacher)
+        val teacher = findViewById<RadioButton>(R.id.rb_worker)
         val grpStudent = findViewById<Group>(R.id.grp_student)
         val grpWorker = findViewById<Group>(R.id.grp_worker)
         val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
+        val radGrp = findViewById<RadioGroup>(R.id.radio_grp)
         birthdayDate = findViewById<EditText>(R.id.edit_birthday)
 
-        // nationality.onItemSelectedListener =
+        /*ArrayAdapter.createFromResource(this, R.array.nationalities, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            nationality.adapter = adapter
+        }*/
+
+        radGrp.setOnCheckedChangeListener{_, choice ->
+            grpStudent.visibility = if (choice == R.id.rb_student) View.VISIBLE else View.GONE
+            grpWorker.visibility = if (choice == R.id.rb_worker) View.VISIBLE else View.GONE
+        }
 
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -52,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateDate() {
         val myFormat = "dd MMM yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
-        birthdayDate.text = sdf.format(cal.getTime())
+        birthdayDate.text = sdf.format(cal.time)
     }
 
 }
