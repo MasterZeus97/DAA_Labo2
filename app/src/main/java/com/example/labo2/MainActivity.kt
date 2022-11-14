@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.Group
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -88,6 +90,9 @@ class MainActivity : AppCompatActivity() {
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
+
+        // Set calendar to current time
+        updateDate()
     }
 
     private fun updateDate() {
