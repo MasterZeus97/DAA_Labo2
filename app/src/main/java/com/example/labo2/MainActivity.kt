@@ -12,25 +12,31 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private var cal = Calendar.getInstance()
-    private lateinit var birthdayDate: TextView
+    private lateinit var birthdate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_labo2)
 
-        val name =findViewById<EditText>(R.id.edit_name)
-        val surname =findViewById<EditText>(R.id.edit_surname)
-        val nationality = findViewById<Spinner>(R.id.spinner_nation)
-        val student = findViewById<RadioButton>(R.id.rb_student)
-        val teacher = findViewById<RadioButton>(R.id.rb_worker)
+        // Group view
         val grpStudent = findViewById<Group>(R.id.grp_student)
         val grpWorker = findViewById<Group>(R.id.grp_worker)
-        val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
+
+        // Buttons and actions
         val btnCancel = findViewById<Button>(R.id.btn_cancel)
+        val btnOK = findViewById<Button>(R.id.btn_ok)
         val radGrp = findViewById<RadioGroup>(R.id.radio_grp)
-        birthdayDate = findViewById<EditText>(R.id.edit_birthday)
+
+        // Common inputs
+        val name = findViewById<EditText>(R.id.edit_name)
+        val surname = findViewById<EditText>(R.id.edit_surname)
+        val nationality = findViewById<Spinner>(R.id.spinner_nation)
         val email = findViewById<EditText>(R.id.edit_email)
         val remark = findViewById<EditText>(R.id.edit_remarks)
+
+        // Birthday management
+        val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
+        birthdate = findViewById<EditText>(R.id.edit_birthday)
 
         // Supp Student
         val ecole_name = findViewById<EditText>(R.id.edit_ecole_name)
@@ -45,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         btnCancel.setOnClickListener {
             name.setText("")
             surname.setText("")
-            birthdayDate.text = ""
+            birthdate.text = ""
             nationality.setSelection(0)
             radGrp.clearCheck()
             ecole_name.setText("")
@@ -56,6 +62,9 @@ class MainActivity : AppCompatActivity() {
             email.setText("")
             remark.setText("")
         }
+
+        // Button OK
+        btnOK.setOnClickListener {}
 
         // Radio callback for supplementary data
         radGrp.setOnCheckedChangeListener{_, choice ->
@@ -86,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateDate() {
         val myFormat = "dd MMM yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
-        birthdayDate.text = sdf.format(cal.time)
+        birthdate.text = sdf.format(cal.time)
     }
 
 }
