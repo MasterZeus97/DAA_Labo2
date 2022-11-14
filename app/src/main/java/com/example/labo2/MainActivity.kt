@@ -4,12 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.constraintlayout.widget.Group
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,15 +28,20 @@ class MainActivity : AppCompatActivity() {
         val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
         birthdayDate = findViewById<EditText>(R.id.edit_birthday)
 
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+        ArrayAdapter.createFromResource(this, R.array.nationalities, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            nationality.adapter = adapter
+        }
+
+        // nationality.onItemSelectedListener =
+
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDate()
             }
-        }
 
         btnBirthday.setOnClickListener {
             DatePickerDialog(
