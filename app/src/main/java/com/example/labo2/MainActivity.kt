@@ -26,19 +26,44 @@ class MainActivity : AppCompatActivity() {
         val grpStudent = findViewById<Group>(R.id.grp_student)
         val grpWorker = findViewById<Group>(R.id.grp_worker)
         val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
+        val btnCancel = findViewById<Button>(R.id.btn_cancel)
         val radGrp = findViewById<RadioGroup>(R.id.radio_grp)
         birthdayDate = findViewById<EditText>(R.id.edit_birthday)
+        val email = findViewById<EditText>(R.id.edit_email)
+        val remark = findViewById<EditText>(R.id.edit_remarks)
 
-        /*ArrayAdapter.createFromResource(this, R.array.nationalities, android.R.layout.simple_spinner_item).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            nationality.adapter = adapter
-        }*/
+        // Supp Student
+        val ecole_name = findViewById<EditText>(R.id.edit_ecole_name)
+        val year_degree = findViewById<EditText>(R.id.edit_year_degree)
 
+        // Supp worker
+        val worker_name = findViewById<EditText>(R.id.edit_worker_name)
+        val sector = findViewById<Spinner>(R.id.spinner_sector)
+        val experience = findViewById<EditText>(R.id.edit_experience)
+
+        // Cancel on click
+        btnCancel.setOnClickListener {
+            name.setText("")
+            surname.setText("")
+            birthdayDate.text = ""
+            nationality.setSelection(0)
+            radGrp.clearCheck()
+            ecole_name.setText("")
+            year_degree.setText("")
+            worker_name.setText("")
+            sector.setSelection(0)
+            experience.setText("")
+            email.setText("")
+            remark.setText("")
+        }
+
+        // Radio callback for supplementary data
         radGrp.setOnCheckedChangeListener{_, choice ->
             grpStudent.visibility = if (choice == R.id.rb_student) View.VISIBLE else View.GONE
             grpWorker.visibility = if (choice == R.id.rb_worker) View.VISIBLE else View.GONE
         }
 
+        // Date management
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
