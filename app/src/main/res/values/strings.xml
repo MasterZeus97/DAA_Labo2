@@ -13,6 +13,7 @@
     <string name="main_base_occupation_worker">Employé</string>
 
     <string-array translatable="false" name="nationalities">
+        <item>@string/nationality_empty</item>
         <item>@string/ch</item>
         <item>@string/fr</item>
         <item>@string/de</item>
@@ -31,12 +32,13 @@
     <string name="main_specific_graduationyear_title">Année du diplôme</string>
 
     <string name="main_specific_workers_title">Données spécifiques (employé)</string>
-    <string name="main_specific_compagny_title">Entreprise</string>
+    <string name="main_specific_company_title">Entreprise</string>
     <string name="main_specific_sector_title">Secteur</string>
     <string name="main_specific_experience_title">Expérience (années)</string>
 
     <string name="sectors_empty">Sélectionner</string>
     <string-array name="sectors">
+        <item>@string/sectors_empty</item>
         <item>@string/agriculture</item>
         <item>@string/art</item>
         <item>@string/construction</item>
@@ -79,5 +81,6 @@
 
     <string name="btn_cancel">@android:string/cancel</string>
     <string name="btn_ok">@android:string/ok</string>
+    <string name="cake">Cake</string>
 
 </resources>
