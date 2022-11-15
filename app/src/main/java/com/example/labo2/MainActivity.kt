@@ -7,7 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.Group
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView.OnItemSelectedListener
+import ch.heigvd.iict.and.labo2.Person
 import ch.heigvd.iict.and.labo2.Student
 import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
@@ -16,9 +17,28 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private var cal = Calendar.getInstance()
-    private lateinit var birthdate: TextView
+    private lateinit var birthdate: EditText
     private var nationalityValue: String? = null
     private var sectorValue: String? = null
+
+    // Common inputs
+    private lateinit var name: EditText
+    private lateinit var surname: EditText
+    private lateinit var nationality: Spinner
+    private lateinit var email: EditText
+    private lateinit var remark: EditText
+
+    // Supp Student
+    private lateinit var schoolName: EditText
+    private lateinit var yearDegree: EditText
+
+    // Supp Worker
+    private lateinit var companyName: EditText
+    private lateinit var sector: Spinner
+    private lateinit var experience: EditText
+
+    // Actions
+    private lateinit var radGrp: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +51,25 @@ class MainActivity : AppCompatActivity() {
         // Buttons and actions
         val btnCancel = findViewById<Button>(R.id.btn_cancel)
         val btnOK = findViewById<Button>(R.id.btn_ok)
-        val radGrp = findViewById<RadioGroup>(R.id.radio_grp)
+        radGrp = findViewById(R.id.radio_grp)
         val btnBirthday = findViewById<ImageButton>(R.id.btn_birthday)
 
         // Common inputs
-        val name = findViewById<EditText>(R.id.edit_name)
-        val surname = findViewById<EditText>(R.id.edit_surname)
-        val nationality = findViewById<Spinner>(R.id.spinner_nation)
-        val email = findViewById<EditText>(R.id.edit_email)
-        val remark = findViewById<EditText>(R.id.edit_remarks)
-        birthdate = findViewById<EditText>(R.id.edit_birthday)
+        name = findViewById(R.id.edit_name)
+        surname = findViewById(R.id.edit_surname)
+        nationality = findViewById(R.id.spinner_nation)
+        email = findViewById(R.id.edit_email)
+        remark = findViewById(R.id.edit_remarks)
+        birthdate = findViewById(R.id.edit_birthday)
 
         // Supp Student
-        val schoolName = findViewById<EditText>(R.id.edit_school_name)
-        val yearDegree = findViewById<EditText>(R.id.edit_year_degree)
+        schoolName = findViewById(R.id.edit_school_name)
+        yearDegree = findViewById(R.id.edit_year_degree)
 
         // Supp worker
-        val companyName = findViewById<EditText>(R.id.edit_company_name)
-        val sector = findViewById<Spinner>(R.id.spinner_sector)
-        val experience = findViewById<EditText>(R.id.edit_experience)
+        companyName = findViewById(R.id.edit_company_name)
+        sector = findViewById(R.id.spinner_sector)
+        experience = findViewById(R.id.edit_experience)
 
         // Nationality selection
         nationality.onItemSelectedListener = object : OnItemSelectedListener {
@@ -83,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         btnCancel.setOnClickListener {
             name.setText("")
             surname.setText("")
-            birthdate.text = ""
+            birthdate.setText("")
             nationality.setSelection(0)
             radGrp.clearCheck()
             schoolName.setText("")
@@ -185,7 +205,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateDate() {
         val myFormat = "dd MMM yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
-        birthdate.text = sdf.format(cal.time)
+        birthdate.setText(sdf.format(cal.time))
     }
 
 }
