@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.Group
+import android.widget.AdapterView.OnItemSelectedListener;
 import ch.heigvd.iict.and.labo2.Student
 import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private var cal = Calendar.getInstance()
     private lateinit var birthdate: TextView
+    private var nationalityValue: String? = null
+    private var sectorValue: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,16 +51,33 @@ class MainActivity : AppCompatActivity() {
         val sector = findViewById<Spinner>(R.id.spinner_sector)
         val experience = findViewById<EditText>(R.id.edit_experience)
 
-        // Nationality list with default value
-        val natList = mutableListOf(
-            getString(R.string.nationality_empty),
-            getString(R.string.ch),
-            getString(R.string.fr),
-            getString(R.string.de),
-            getString(R.string.it),
-        )
-        val natAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, natList)
-        nationality.adapter = natAdapter
+        // Nationality selection
+        nationality.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                nationalityValue = if (nationality.selectedItemPosition == 0) {
+                    null
+                } else {
+                    nationality.selectedItem.toString()
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                nationalityValue = null
+            }
+        }
+
+        // Sector selection
+        sector.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                sectorValue = if (sector.selectedItemPosition == 0) {
+                    null
+                } else {
+                    sector.selectedItem.toString()
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                sectorValue = null
+            }
+        }
 
         // Cancel on click
         btnCancel.setOnClickListener {
@@ -77,44 +97,58 @@ class MainActivity : AppCompatActivity() {
 
         // Button OK : Print values in log
         btnOK.setOnClickListener {
+            if (null == nationalityValue) {
+                Log.e("Validation", "No nationality selected")
+                return@setOnClickListener
+            }
             when (radGrp.checkedRadioButtonId) {
                 R.id.rb_student -> {
-                    var endYear = 0
+                    val graduationYear: Int
                     try {
-                        endYear = yearDegree.text.toString().toInt()
-                    } catch (_: Exception) {}
+                        graduationYear = yearDegree.text.toString().toInt()
+                    } catch (_: Exception) {
+                        Log.e("Validation", "No value given for graduation year")
+                        return@setOnClickListener
+                    }
 
                     println(Student(
                         name.text.toString(),
                         surname.text.toString(),
                         cal,
-                        nationality.selectedItem.toString(),
+                        nationalityValue!!,
                         schoolName.text.toString(),
-                        endYear,
+                        graduationYear,
                         email.text.toString(),
                         remark.text.toString()
                     ).toString())
                 }
                 R.id.rb_worker -> {
-                    var exp = 0
+                    if (null == sectorValue) {
+                        Log.e("Validation", "No selection for work sector")
+                        return@setOnClickListener
+                    }
+                    val exp: Int
                     try {
                         exp = experience.text.toString().toInt()
-                    } catch (_: Exception) {}
+                    } catch (_: Exception) {
+                        Log.e("Validation", "No value for experience")
+                        return@setOnClickListener
+                    }
 
                     println(Worker(
                         name.text.toString(),
                         surname.text.toString(),
                         cal,
-                        nationality.selectedItem.toString(),
+                        nationalityValue!!,
                         companyName.text.toString(),
-                        sector.selectedItem.toString(),
+                        sectorValue!!,
                         exp,
                         email.text.toString(),
                         remark.text.toString()
                     ).toString())
                 }
                 else -> {
-                    Log.e("MainActivity", "No specification selected")
+                    Log.e("Validation", "No specification selected")
                 }
             }
         }
