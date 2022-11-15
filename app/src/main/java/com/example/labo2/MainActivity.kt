@@ -8,9 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.Group
 import android.widget.AdapterView.OnItemSelectedListener
-import ch.heigvd.iict.and.labo2.Person
-import ch.heigvd.iict.and.labo2.Student
-import ch.heigvd.iict.and.labo2.Worker
+import ch.heigvd.iict.and.labo2.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -182,10 +180,7 @@ class MainActivity : AppCompatActivity() {
         // Date management
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                updateDate()
+                pickDate(year, monthOfYear, dayOfMonth)
             }
 
         btnBirthday.setOnClickListener {
@@ -199,6 +194,51 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Set calendar to current time
+        updateDate()
+
+        // Example loads
+        load(Person.exampleStudent)
+        // load(Person.exampleWorker)
+    }
+
+    private fun spinnerSelect(s: Spinner, arrayId: Int, v: String) {
+        val arr = resources.getStringArray(arrayId)
+        for (i in arr.indices) {
+            if (arr[i].toString() == v) {
+                s.setSelection(i)
+                return
+            }
+        }
+    }
+
+    private fun load(p: Person) {
+        name.setText(p.name)
+        surname.setText(p.firstName)
+        spinnerSelect(nationality, R.array.nationalities, p.nationality)
+        email.setText(p.email)
+        remark.setText(p.remark)
+        pickDate(p.birthDay.get(Calendar.YEAR), p.birthDay.get(Calendar.MONTH), p.birthDay.get(Calendar.DAY_OF_MONTH))
+    }
+
+    public fun load(s: Student) {
+        load(s as Person)
+        radGrp.check(R.id.rb_student)
+        schoolName.setText(s.university)
+        yearDegree.setText(s.graduationYear.toString())
+    }
+
+    public fun load(w: Worker) {
+        load(w as Person)
+        radGrp.check(R.id.rb_worker)
+        companyName.setText(w.company)
+        spinnerSelect(sector, R.array.sectors, w.sector)
+        experience.setText(w.experienceYear.toString())
+    }
+
+    private fun pickDate(year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, monthOfYear)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         updateDate()
     }
 
