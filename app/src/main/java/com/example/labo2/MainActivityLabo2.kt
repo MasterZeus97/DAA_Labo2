@@ -13,7 +13,13 @@ import ch.heigvd.iict.and.labo2.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+/**
+ * @author Perrenoud Pascal
+ * @author Seem Thibault
+ * @description Layout pour le labo2 de DAA, formulaire d'inscription/identification
+ */
+
+class MainActivityLabo2 : AppCompatActivity() {
 
     private var cal = Calendar.getInstance()
     private lateinit var birthdate: EditText
@@ -196,7 +202,7 @@ class MainActivity : AppCompatActivity() {
 
         btnBirthday.setOnClickListener {
             DatePickerDialog(
-                this@MainActivity,
+                this@MainActivityLabo2,
                 dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
