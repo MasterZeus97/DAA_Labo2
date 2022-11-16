@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.constraintlayout.widget.Group
 import android.widget.AdapterView.OnItemSelectedListener
@@ -168,6 +169,16 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     Log.e("Validation", "No specification selected")
                 }
+            }
+        }
+
+        email.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    btnOK.performClick()
+                    true
+                }
+                else -> false
             }
         }
 
