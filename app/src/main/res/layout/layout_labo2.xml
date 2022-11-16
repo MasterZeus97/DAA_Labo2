@@ -57,6 +57,7 @@
         android:id="@+id/edit_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:nextFocusDown="@id/edit_surname"
         app:layout_constraintTop_toBottomOf="@id/donne_base"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
@@ -76,6 +77,7 @@
         android:id="@+id/edit_surname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:nextFocusDown="@id/btn_birthday"
         app:layout_constraintTop_toBottomOf="@id/edit_name"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
@@ -98,6 +100,7 @@
         android:enabled="false"
         android:focusable="false"
         android:inputType="none"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/edit_surname"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toStartOf="@id/btn_birthday"
@@ -330,7 +333,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/additional_email_title"
-        app:layout_constraintTop_toBottomOf="@id/supplementary_data_title"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@id/edit_remarks"
         app:layout_constraintStart_toEndOf="@id/input_guideline"
         app:layout_constraintEnd_toEndOf="@id/right_margin"
         android:importantForAutofill="no"
@@ -343,7 +347,7 @@
         android:layout_height="wrap_content"
         android:text="@string/additional_remarks_title"
         app:layout_constraintLeft_toLeftOf="@id/left_margin"
-        app:layout_constraintTop_toBottomOf="@id/edit_email"/>
+        app:layout_constraintTop_toBottomOf="@id/supplementary_data_title"/>
     <EditText
         android:id="@+id/edit_remarks"
         android:layout_width="match_parent"
@@ -362,14 +366,14 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_cancel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_remarks"
+        app:layout_constraintTop_toBottomOf="@id/edit_email"
         app:layout_constraintEnd_toStartOf="@id/btn_ok"/>
     <Button
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_ok"
-        app:layout_constraintTop_toBottomOf="@id/edit_remarks"
+        app:layout_constraintTop_toBottomOf="@id/edit_email"
         app:layout_constraintStart_toEndOf="@id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"/>
 
